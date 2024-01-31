@@ -1,3 +1,51 @@
+F12개발자도구 -> 애플리케이션,Lighthouse 에서 확인
+애플리케이션 -> 매니페스트,서비스워커
+
+
 npx create-react-app r-pwa --template cra-template-pwa
 
 npx create-react-app r-pwa --template cra-template-pwa-typescript (타입스크립트버전)
+
+
+web-ve어쩌구 오류뜨면 npm i web-ve 어쩌구 설치해주면해결
+
+https://developer.mozilla.org/en-US/docs/Web/Manifest         pwa 매니패스트
+
+web.dev/articles/add-manifest?hl=ko 참고사이트
+
+
+
+public 폴더안에 index.html 파일에 body에 script열고 작성
+  <script>
+
+    navigator.serviceWorker.register('sw.js')
+      .then(res => {
+        console.log('서비스워커 등록 완료!')
+        console.log(res)
+      })
+  </script>
+
+
+따로 js파일 만들고 그안에 써야함
+self.addEventListener('install', (a) => {
+    console.log('서비스워커 설치완료')
+})
+
+self.addEventListener('activate', (a) => {
+    console.log('서비스워커 동작 되고있음')
+})
+
+self.addEventListener('fetch', (a) => {
+    console.log('데이터 요청시 처리')
+})
+
+
+
+App.js파일에 함수로 작성
+  Notification.requestPermission().then();
+
+  setTimeout(() => {
+    navigator.serviceWorker.controller.postMessage({
+      message: "Hello, service worker~~~"
+    })
+  }, 5000)
