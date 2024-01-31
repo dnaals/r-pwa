@@ -72,7 +72,7 @@ registerRoute(
 self.addEventListener('message', (event) => {
   console.log('메세지', event.data)
   self.registration.showNotification('title', {
-    body: event.data.messege,
+    body: event.data.message,
   })
 })
 
