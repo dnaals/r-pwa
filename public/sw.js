@@ -12,7 +12,7 @@ self.addEventListener('fetch', (a) => {
 
 
 self.addEventListener('message', (event) => {
-    console.log('메세지', event.data)
+
     const option = {
         body: event.data.message,
         icon: './img/img1.png',        //제목옆에 아이콘
