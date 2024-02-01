@@ -11,6 +11,7 @@ self.addEventListener('fetch', (a) => {
 })
 
 
+
 self.addEventListener('message', (event) => {
 
     const option = {
@@ -30,8 +31,7 @@ self.addEventListener('message', (event) => {
 
 
 self.addEventListener('notificationclick', (event) => {
-    console.log(event.action)
-    console.log(clients)
+
     if (event.action == 'open') {
         clients.openWindow('https://naver.com');
     } else if (event.action == 'close') {

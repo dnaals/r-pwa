@@ -94,7 +94,7 @@ self.addEventListener('message', (event) => {
 
 self.addEventListener('notificationclick', (event) => {
   if (event.action == 'open') {
-    clients.openWindow('https://naver.com');
+    clients.openWindow('https://naver.com')
   } else if (event.action == 'close') {
     event.notification.close();
   }
