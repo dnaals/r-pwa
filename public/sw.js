@@ -12,9 +12,29 @@ self.addEventListener('fetch', (a) => {
 
 
 self.addEventListener('message', (event) => {
-
     console.log('메세지', event.data)
-    self.registration.showNotification('title', {
+    const option = {
         body: event.data.message,
-    })
+        icon: './img/img1.png',        //제목옆에 아이콘
+        image: './img/img2.png',       //내용에 대한 썸네일
+        badge: './img/img3.png',
+        vibrate: [200, 100, 300],
+        actions: [
+            { action: 'open', title: '자세히보기' },
+            { action: 'close', title: '닫기' }
+        ]
+    }
+
+    self.registration.showNotification('title', option);
+})
+
+
+self.addEventListener('notificationclick', (event) => {
+    console.log(event.action)
+    console.log(clients)
+    if (event.action == 'open') {
+        clients.openWindow('https://naver.com');
+    } else if (event.action == 'close') {
+        event.notification.close();
+    }
 })
