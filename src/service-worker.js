@@ -78,9 +78,9 @@ registerRoute(
 self.addEventListener('message', (event) => {
     const option = {
         body: event.data.message,
-        icon: './img/img.png',        //제목옆에 아이콘
-        image: './img/img.png',       //내용에 대한 썸네일
-        badge: './img/img.png',
+        icon: './img/img1.png',        //제목옆에 아이콘
+        image: './img/img2.png',       //내용에 대한 썸네일
+        badge: './img/img3.png',
         vibrate: [200, 100, 300],
         actions: [
             { action: 'open', title: '자세히보기' },
