@@ -93,11 +93,15 @@ self.addEventListener('message', (event) => {
 
 
 self.addEventListener('notificationclick', (event) => {
-  if (event.action == 'open') {
-    clients.openWindow('https://naver.com')
-  } else if (event.action == 'close') {
-    event.notification.close();
-  }
+  event.waitUntil(
+    self.clients.matchAll().then(function (clientList) {
+      if (event.action == 'open') {
+        return self.clients.openWindow('https://naver.com');
+      } else if (event.action == 'close') {
+        return event.notification.close();
+      }
+    })
+  )
 })
 
 // Any other custom service worker logic can go here.
