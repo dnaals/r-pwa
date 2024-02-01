@@ -30,6 +30,7 @@ self.addEventListener('message', (event) => {
 })
 
 
+
 self.addEventListener('notificationclick', (event) => {
     event.waitUntil(
         self.clients.matchAll().then(function (clientList) {
