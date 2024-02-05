@@ -1,33 +1,26 @@
 import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import Camera from './Camera';
 function App() {
-  useEffect(() => {
-    console.log(Notification.permission);
-    Notification.requestPermission().then();
-  }, [])
 
+  useEffect(()=>{
+    if(Notification.permission != 'granted'){
+      Notification.requestPermission().then();
+    }    
+  },[])
 
-
-  function msg() {
+  function msg(){
     navigator.serviceWorker.controller.postMessage({
-      message: "Hello, service worker~~~"
+      message:'Hello, service worker~~~'
     })
   }
-
-
-
-
-
-
+  
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={msg}>알림메세지</button>
-
-
-
+        <button id="msg">구독하기</button>
+        <Camera />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -40,6 +33,7 @@ function App() {
         >
           Learn React
         </a>
+        
       </header>
     </div>
   );

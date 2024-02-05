@@ -1,9 +1,11 @@
-self.addEventListener('install', (a) => {
+self.addEventListener('install', (event) => {
     console.log('서비스워커 설치완료')
+    event.waitUntil(self.skipWaiting());
 })
 
-self.addEventListener('activate', (a) => {
+self.addEventListener('activate', (event) => {
     console.log('서비스워커 동작 되고있음')
+    event.waitUntil(self.clients.claim());
 })
 
 self.addEventListener('fetch', (a) => {
@@ -12,10 +14,10 @@ self.addEventListener('fetch', (a) => {
 
 
 
-self.addEventListener('message', (event) => {
-
+self.addEventListener('push', (event) => {
+    console.log('메세지가.....?', event.data.msg)
     const option = {
-        body: event.data.message,
+        body: 'aaaaaaa',
         icon: './img/img1.png',        //제목옆에 아이콘
         image: './img/img2.png',       //내용에 대한 썸네일
         badge: './img/img3.png',

@@ -39,6 +39,28 @@ self.addEventListener('fetch', (a) => {
     console.log('데이터 요청시 처리')
 })
 
+self.addEventListener('message', (event) => {
+    const option = {
+        body: event.data.message,
+        icon: './img/img1.png',        //제목옆에 아이콘
+        image: './img/img2.png',       //내용에 대한 썸네일
+        badge: './img/img3.png',
+        vibrate: [200, 100, 300],       // 진동울리게함
+        actions: [                        //버튼추가
+            { action: 'open', title: '자세히보기' },    
+            { action: 'close', title: '닫기' }
+        ]
+    }
+    self.registration.showNotification('title', option);          괄호안에 제목, 메세지내용
+})
+
+self.addEventListener('notificationclick', (event) => {
+    if (event.action == 'open') {                        //버튼에 이벤트넣기
+        clients.openWindow('https://naver.com');
+    } else if (event.action == 'close') {
+        event.notification.close();
+    }
+})
 
 
 App.js파일에 함수로 작성
@@ -49,3 +71,14 @@ App.js파일에 함수로 작성
       message: "Hello, service worker~~~"
     })
   }, 5000)
+
+Notification.permission  승인되었는지 확인
+승인:granted
+차단:denied
+기본:default
+
+
+
+
+
+web-push (서버에서 프론트로 메세지보
