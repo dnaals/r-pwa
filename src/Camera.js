@@ -41,10 +41,13 @@ return (
         screenshotFormat="image/jpeg"
         width="100%"
         height="auto"
+        // environment 후면 / user 전면(셀카)
+        videoConstraints = {{facingMode:'environment'}}
     />
     <button onClick={capture}> Capture photo  </button>
-    <img src={webcamImg}/>
-    {webcamImg}
+    {
+        <img src ={webcamImg} width="300" />
+    }
 
     </div>
 );
